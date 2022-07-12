@@ -1,7 +1,8 @@
-const Discord = require('discord.js'); // Discord in general
+require('dotenv').config();
+const { Client, Intents } = require('discord.js'); // Discord in general
 // const fetch = require('node-fetch'); // HTTP request
 
-const client = new Discord.client();
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 // API_URL = ''; // URL
 
 // For ready
@@ -21,11 +22,12 @@ client.on('message', async message => { // Request html => API => async
             text: message.context
         }
     };
-    const headers = { // header
-        'Authorization': 'Bearer ' + process.env.HUGGINGFACE_TOKEN
-    };
+    // const headers = { // header
+    //     'Authorization': 'Bearer ' + process.env.HUGGINGFACE_TOKEN
+    // };
 
-    message.channel.startTyping();
+    // message.channel.messageCreate();
+    await message.channel.sendTyping();
 
     // const response = await fetch(API_URL, {method: 'post', body: JSON.stringify(payload), headers: headers});
     // const data = await response.json();
@@ -36,7 +38,6 @@ client.on('message', async message => { // Request html => API => async
     //     botResponse = data.error;
     // }
     botResponse = "I catch that...";
-    message.channel.stopTyping();
     message.reply(botResponse);
 })
 
