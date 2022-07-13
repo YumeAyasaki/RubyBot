@@ -1,6 +1,9 @@
 node_modules
-data/cached
+data
+
+DialoGPT-small-yumebot
 
 .env
 .venv
 .vscode
+HuggingFace-API-key.txt
